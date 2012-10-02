@@ -8,5 +8,3 @@ logs/
 
 .idea
 *.iml
-sigi-client/src/main/webapp/app/css/.sass-cache/
-sigi-client/src/main/webapp/app/css/stylesheet/generated/

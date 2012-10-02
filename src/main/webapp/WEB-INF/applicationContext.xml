@@ -13,10 +13,10 @@
 	<!-- <context:property-placeholder location="classpath*:*.properties" /> -->
 
     <!-- Bean d'acces au Contexte -->
-    <bean id="applicationContextHolder"	class="lu.sfeir.sigi.springrestlet.ApplicationContextHolder" />
+    <bean id="applicationContextHolder"	class="fr.lau.kiriata.springrestlet.ApplicationContextHolder" />
 
     <bean id="applicationProperties" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-        <property name="location" value="classpath:sigi-server.properties"/>
+        <property name="location" value="classpath:kiriata-server.properties"/>
     </bean>
 
 	<bean
@@ -43,13 +43,13 @@
 	<!-- Activation du AutoWiring -->
 	<context:annotation-config />
 
-    <!--reads sigi-client.properties file-->
-    <bean id="placeholderConfig" class="lu.sfeir.sigi.utils.SpringPropertyUtils">
-        <property name="location" value="classpath:sigi-server.properties">
+    <!--reads kiriata-client.properties file-->
+    <bean id="placeholderConfig" class="fr.lau.kiriata.utils.SpringPropertyUtils">
+        <property name="location" value="classpath:kiriata-server.properties">
         </property>
     </bean>
 
-	<bean id="sigi" class="org.apache.commons.dbcp.BasicDataSource"
+	<bean id="kiriataDataSource" class="org.apache.commons.dbcp.BasicDataSource"
 		destroy-method="close">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
         <property name="url" value="${url}" />
@@ -59,10 +59,10 @@
 
 	<bean id="mySessionFactory"
 		class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
-		<property name="dataSource" ref="sigi" />
+		<property name="dataSource" ref="kiriataDataSource" />
 		<!-- Packages à scanner pour trouver les objets model -->
 		<property name="packagesToScan">
-			<value>lu.sfeir.sigi.model</value>
+			<value>fr.lau.kiriata.model</value>
 		</property>
 		<property name="hibernateProperties">
 			<props>
@@ -92,7 +92,7 @@
 		<property name="sessionFactory" ref="mySessionFactory" />
 	</bean>
 
-	<bean id="movieDao" class="lu.sfeir.sigi.dao.MovieDaoImpl" parent="proxyDAO" scope="prototype" />
+	<bean id="movieDao" class="fr.lau.kiriata.dao.MovieDaoImpl" parent="proxyDAO" scope="prototype" />
 
     <!-- our SpringComponent which binds us to the Restlet servlet configured above -->
     <bean id="springRestletComponent" class="org.restlet.ext.spring.SpringComponent">
@@ -109,8 +109,8 @@
         <property name="defaultTarget" ref="restletApplication" />
     </bean>
 
-    <bean id="restletApplication" class="lu.sfeir.sigi.KiriataApplication"/>
+    <bean id="restletApplication" class="fr.lau.kiriata.KiriataApplication"/>
 
-    <bean id="dogsRestResource" class="lu.sfeir.sigi.resource.MovieResource" scope="prototype"/>
+    <bean id="dogsRestResource" class="fr.lau.kiriata.resource.MovieResource" scope="prototype"/>
 
 </beans>

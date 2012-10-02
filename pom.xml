@@ -29,15 +29,15 @@
         <profile>
             <id>production</id>
             <properties>
-                <provider>http://sigi-server.sfeir.cloudbees.net</provider>
-                <client-citoyen-redirect-uri>http://sigi-client.sfeir.cloudbees.net/</client-citoyen-redirect-uri>
+                <provider>http://kiriata-server.sfeir.cloudbees.net</provider>
+                <client-citoyen-redirect-uri>http://kiriata-client.sfeir.cloudbees.net/</client-citoyen-redirect-uri>
                 <client-fonctionnaire-redirect-uri>http://localhost:8001/</client-fonctionnaire-redirect-uri>
                 <db.driver>com.mysql.jdbc.Driver</db.driver>
-                <db.url>jdbc:cloudbees://sigiserverdb</db.url>
-                <db.user>sigi</db.user>
-                <db.pwd>sigi</db.pwd>
-                <db.schema>sigiserverdb</db.schema>
-                <flyway.db.url>jdbc:mysql://ec2-50-19-213-178.compute-1.amazonaws.com:3306/sigiserverdb</flyway.db.url>
+                <db.url>jdbc:cloudbees://kiriataserverdb</db.url>
+                <db.user>kiriata</db.user>
+                <db.pwd>kiriata</db.pwd>
+                <db.schema>kiriataserverdb</db.schema>
+                <flyway.db.url>jdbc:mysql://ec2-50-19-213-178.compute-1.amazonaws.com:3306/kiriataserverdb</flyway.db.url>
             </properties>
         </profile>
     </profiles>
@@ -214,7 +214,7 @@
     </dependencies>
 
 	<build>
-		<finalName>sigi-server</finalName>
+		<finalName>kiriata-server</finalName>
         <resources>
             <resource>
                 <directory>src/main/resources</directory>
